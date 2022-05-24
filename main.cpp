@@ -88,6 +88,59 @@ void fri(int node)
         }
     }
 }
+void pre()
+{
+    ifstream in;
+    in.open("twitter.csv");
+    cout<<"Loading...."<<endl;
+    while(!in.eof())
+    {
+        string s="";
+        string u,v;
+        u="",v="";
+        in>>s;
+        int idx=0;
+        for( idx=0; idx<(int)s.size(); idx++)
+        {
+            if(s[idx]==',')break;
+            u.push_back(s[idx]);
+        }
+        for(++idx; idx<(int)s.size(); idx++)v.push_back(s[idx]);
+        /*getline(in,v,',');
+        in>>u;*/
+        if(!id[u])
+        {
+            id[u]=x;
+            st[x]=u;
+            x++;
+
+        }
+        if(!id[v])
+        {
+            id[v]=x;
+            st[x]=v;
+            x++;
+
+        }
+        int v1=id[v],u1=id[u];
+        f[v1].second=v1;
+        f[u1].second=u1;
+        if(exist[ {u1,v1}])continue;
+        exist[{u1,v1}]++;
+
+
+
+       if(v1==u1){
+        //cout<<"1";
+        continue;
+       }
+        adj[id[u]].push_back(id[v]);
+        f[id[v]].first++;
+
+    }
+    sort(f,f+N,greater<pair<int,int> >());
+    cout<<"Finished"<<endl;
+}
 int main()
 {
      pre();

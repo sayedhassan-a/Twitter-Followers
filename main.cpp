@@ -50,7 +50,44 @@ int where(int rat)
 }
 
 
-
+void fri(int node)
+{
+    memset(child,0,sizeof child);
+    memset(mut,0,sizeof mut);
+    num_mut=0;
+    for(int i=0; i<adj[node].size(); i++)
+    {
+        child[adj[node][i]]=1;
+    }
+    for(int i=1; i<N; i++)
+    {
+        if(!child[i]&&i!=node)
+        {
+            getmut(i);
+        }
+    }
+    if(num_mut==0)
+    {
+        cout<<"No Followers Yet.\nRecommended Top Influncer.\n";
+        for(int i=0; i<10&&f[i].first; i++)
+        {
+            if(f[i].second==node)continue;
+            cout<<st[f[i].second]<<" "<<f[i].first<<endl;
+        }
+        cout<<endl;
+    }
+    else
+    {
+        sort(mut,mut+N,greater<pair<int,int> >());
+        int rat=max(num_mut*5/100,min(10,num_mut));
+        int to=where(rat);
+        cout<<"Number of Recomende Friends : "<<to+1<<" Threshold Mutual Ratio : "<<mut[to].first<<endl;
+        for(int i=0; i<=to; i++)
+        {
+            cout<<st[mut[i].second]<<"   "<<mut[i].first<<endl;
+        }
+    }
+}
 int main()
 {
     

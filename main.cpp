@@ -90,6 +90,54 @@ void fri(int node)
 }
 int main()
 {
+     pre();
+    while(1)
+    {
+        cout<<" 1) The Top Influncer :\n";
+        cout<<" 2) Recmonded Friends :\n";
+        int xx;
+        cin>>xx;
+        if(xx==1)
+        {
+            cout<<"Enter the Number You Need : \n";
+            int y;
+            cin>>y;
+            if(y>x)
+            {
+                cout<<"Too Much Nodes.\n";
+            }
+            else
+            {
+                for(int i=0; i<y&&f[i].first; i++)
+                {
+                    cout<<st[f[i].second]<<" "<<f[i].first<<endl;
+                }
+            }
+        }
+        else if(xx==2)
+        {
+ 
+            cout<<"Enter The ID : \n";
+ 
+            string s;
+            cin>>s;
+            if(!id[s])
+            {
+                cout<<"Invalid User.";
+            }
+            else
+            {
+                int Hypothis_Id=id[s];
+ 
+                fri(Hypothis_Id);
+            }
+ 
+        }
+        else
+        {
+            cout<<"Wrong Entry .\n";
+        }
+    }
     
     return 0;
 }
